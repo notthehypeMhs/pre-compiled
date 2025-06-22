@@ -1,0 +1,23 @@
+name: VerusCoin Mining via ccminer
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mine:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install Docker
+      uses: docker-practice/actions-setup-docker@v1
+
+    - name: Pull ccminer Docker image
+      run: docker pull tpruvot/ccminer
+
+    - name: Run ccminer
+      run: |
+        docker run --rm tpruvot/ccminer \
+        -a verushash \
+        -o stratum+tcp://sg.vipor.net:5040 \
+        -u RDuuJMW7LLCSwRExPtQmqBb3TJeNtjxtqL.WorkerName \
+        -p x
